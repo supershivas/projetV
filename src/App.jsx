@@ -12,6 +12,7 @@ const DEFAULT_FILTERS = {
   motorisations: [],
   segments: [],
   marques: [],
+  annee: [2021, 2024],
   prix: [15000, 65000],
   puissance: [60, 320],
   hauteur: [140, 170],
@@ -36,6 +37,7 @@ export default function App() {
         (c) => c.marque.toLowerCase().includes(q) || c.modele.toLowerCase().includes(q)
       )
     }
+    cars = cars.filter((c) => c.annee >= filters.annee[0] && c.annee <= filters.annee[1])
     if (filters.motorisations.length) {
       cars = cars.filter((c) => filters.motorisations.includes(c.motorisation))
     }
@@ -110,7 +112,7 @@ export default function App() {
               { icon: '🗺️', label: 'Marché européen' },
               { icon: '⛽', label: 'Essence · Hybride · Électrique' },
               { icon: '📐', label: '6 segments' },
-              { icon: '📅', label: 'Millésime 2024' },
+              { icon: '📅', label: '2021 – 2024' },
             ].map(({ icon, label }) => (
               <span key={label} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-gray-200 text-xs text-gray-600 shadow-sm">
                 <span>{icon}</span>

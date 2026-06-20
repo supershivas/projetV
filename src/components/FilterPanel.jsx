@@ -73,6 +73,7 @@ export function FilterPanel({ filters, onChange, marques, onReset }) {
     filters.motorisations.length,
     filters.segments.length,
     filters.marques.length,
+    filters.annee[0] > 2021 || filters.annee[1] < 2024 ? 1 : 0,
     filters.prix[0] > 15000 || filters.prix[1] < 65000 ? 1 : 0,
     filters.puissance[0] > 60 || filters.puissance[1] < 320 ? 1 : 0,
     filters.hauteur[0] > 140 || filters.hauteur[1] < 170 ? 1 : 0,
@@ -118,6 +119,15 @@ export function FilterPanel({ filters, onChange, marques, onReset }) {
             options={marques}
             selected={filters.marques}
             onChange={(v) => onChange({ ...filters, marques: v })}
+          />
+          <RangeSlider
+            label="Année"
+            min={2021}
+            max={2024}
+            step={1}
+            value={filters.annee}
+            onChange={(v) => onChange({ ...filters, annee: v })}
+            format={(v) => `${v}`}
           />
           <RangeSlider
             label="Prix neuf"

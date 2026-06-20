@@ -29,7 +29,7 @@ function MultiCheckbox({ label, options, selected, onChange }) {
   )
 }
 
-function RangeSlider({ label, min, max, value, onChange, format }) {
+function RangeSlider({ label, min, max, value, onChange, format, step = 1 }) {
   return (
     <div>
       <div className="flex justify-between items-center mb-2">
@@ -41,6 +41,7 @@ function RangeSlider({ label, min, max, value, onChange, format }) {
           type="range"
           min={min}
           max={max}
+          step={step}
           value={value[0]}
           onChange={(e) => {
             const v = Number(e.target.value)
@@ -52,6 +53,7 @@ function RangeSlider({ label, min, max, value, onChange, format }) {
           type="range"
           min={min}
           max={max}
+          step={step}
           value={value[1]}
           onChange={(e) => {
             const v = Number(e.target.value)
@@ -74,6 +76,7 @@ export function FilterPanel({ filters, onChange, marques, onReset }) {
     filters.prix[0] > 15000 || filters.prix[1] < 65000 ? 1 : 0,
     filters.puissance[0] > 60 || filters.puissance[1] < 320 ? 1 : 0,
     filters.hauteur[0] > 140 || filters.hauteur[1] < 170 ? 1 : 0,
+    filters.occasion.actif ? 1 : 0,
   ].reduce((a, b) => a + b, 0)
 
   return (
@@ -117,7 +120,7 @@ export function FilterPanel({ filters, onChange, marques, onReset }) {
             onChange={(v) => onChange({ ...filters, marques: v })}
           />
           <RangeSlider
-            label="Prix"
+            label="Prix neuf"
             min={15000}
             max={65000}
             value={filters.prix}
@@ -140,6 +143,47 @@ export function FilterPanel({ filters, onChange, marques, onReset }) {
             onChange={(v) => onChange({ ...filters, hauteur: v })}
             format={(v) => `${(v / 100).toFixed(2)} m`}
           />
+
+          {/* Occasion */}
+          <div className="border-t border-gray-100 pt-4">
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Tarif occasion</p>
+              <button
+                onClick={() => onChange({ ...filters, occasion: { ...filters.occasion, actif: !filters.occasion.actif } })}
+                className={`relative inline-flex h-5 w-9 flex-shrink-0 rounded-full border-2 border-transparent transition-colors ${
+                  filters.occasion.actif ? 'bg-accent-600' : 'bg-gray-200'
+                }`}
+              >
+                <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${filters.occasion.actif ? 'translate-x-4' : 'translate-x-0'}`} />
+              </button>
+            </div>
+            {filters.occasion.actif && (
+              <div className="space-y-4">
+                <RangeSlider
+                  label="Kilométrage"
+                  min={0}
+                  max={200000}
+                  step={5000}
+                  value={filters.occasion.km}
+                  onChange={(v) => onChange({ ...filters, occasion: { ...filters.occasion, km: v } })}
+                  format={(v) => v === 0 ? '0 km' : `${(v / 1000).toFixed(0)}k km`}
+                />
+                <RangeSlider
+                  label="Prix estimé occasion"
+                  min={5000}
+                  max={60000}
+                  step={1000}
+                  value={filters.occasion.prix}
+                  onChange={(v) => onChange({ ...filters, occasion: { ...filters.occasion, prix: v } })}
+                  format={(v) => `${(v / 1000).toFixed(0)}k€`}
+                />
+                <p className="text-xs text-gray-400 leading-relaxed">
+                  Prix estimé basé sur la dépréciation moyenne au kilométrage sélectionné.
+                </p>
+              </div>
+            )}
+          </div>
+
           {activeCount > 0 && (
             <button
               onClick={onReset}

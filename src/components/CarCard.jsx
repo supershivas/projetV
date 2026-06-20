@@ -1,3 +1,5 @@
+import { estimatedUsedPrice } from '../utils/depreciation'
+
 const MOTO_COLORS = {
   essence: 'bg-orange-100 text-orange-700',
   diesel: 'bg-gray-100 text-gray-700',
@@ -12,7 +14,7 @@ const MOTO_ICONS = {
   électrique: '⚡',
 }
 
-export function CarCard({ car, selected, onToggle, selectionFull }) {
+export function CarCard({ car, selected, onToggle, selectionFull, occasionKm }) {
   const disabled = !selected && selectionFull
 
   return (
@@ -56,8 +58,21 @@ export function CarCard({ car, selected, onToggle, selectionFull }) {
           </button>
         </div>
 
-        <div className="text-xl font-bold text-gray-900 mb-3">
-          {car.prix.toLocaleString('fr-FR')} €
+        <div className="mb-3">
+          {occasionKm ? (
+            <div>
+              <div className="text-xl font-bold text-accent-700">
+                ~{estimatedUsedPrice(car.prix, (occasionKm[0] + occasionKm[1]) / 2).toLocaleString('fr-FR')} €
+              </div>
+              <div className="text-xs text-gray-400">
+                estimé occasion · neuf {car.prix.toLocaleString('fr-FR')} €
+              </div>
+            </div>
+          ) : (
+            <div className="text-xl font-bold text-gray-900">
+              {car.prix.toLocaleString('fr-FR')} €
+            </div>
+          )}
         </div>
 
         <div className="flex items-center gap-2 mb-3">

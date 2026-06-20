@@ -1,6 +1,7 @@
 import { useState, useMemo, useRef } from 'react'
 import carsData from './data/cars.json'
 import { useLocalStorage } from './hooks/useLocalStorage'
+import { estimatedUsedPrice } from './utils/depreciation'
 import { Header } from './components/Header'
 import { FilterPanel } from './components/FilterPanel'
 import { SortBar } from './components/SortBar'
@@ -14,6 +15,7 @@ const DEFAULT_FILTERS = {
   prix: [15000, 65000],
   puissance: [60, 320],
   hauteur: [140, 170],
+  occasion: { actif: false, km: [0, 100000], prix: [5000, 60000] },
 }
 
 const marques = [...new Set(carsData.map((c) => c.marque))].sort()
@@ -52,6 +54,15 @@ export default function App() {
     cars = cars.filter(
       (c) => c.hauteur * 100 >= filters.hauteur[0] && c.hauteur * 100 <= filters.hauteur[1]
     )
+    if (filters.occasion.actif) {
+      const [kmMin, kmMax] = filters.occasion.km
+      const [prixMin, prixMax] = filters.occasion.prix
+      cars = cars.filter((c) => {
+        const midKm = (kmMin + kmMax) / 2
+        const estimated = estimatedUsedPrice(c.prix, midKm)
+        return estimated >= prixMin && estimated <= prixMax
+      })
+    }
     return [...cars].sort((a, b) => {
       const v = sort.dir === 'asc' ? 1 : -1
       return (a[sort.key] - b[sort.key]) * v
@@ -177,6 +188,7 @@ export default function App() {
                     selected={selection.includes(car.id)}
                     onToggle={toggleSelection}
                     selectionFull={selection.length >= 4}
+                    occasionKm={filters.occasion.actif ? filters.occasion.km : null}
                   />
                 ))}
               </div>

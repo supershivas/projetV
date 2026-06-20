@@ -738,24 +738,6 @@
     "hauteur": 1.51
   },
   {
-    "id": 42,
-    "marque": "Fiat",
-    "modele": "500e",
-    "annee": 2024,
-    "segment": "Citadine",
-    "prix": 29500,
-    "motorisation": "électrique",
-    "puissance": 118,
-    "consommation": 14.0,
-    "autonomie_km": 320,
-    "co2": 0,
-    "zero_cent": 9.5,
-    "coffre": 185,
-    "transmission": "automatique",
-    "places": 5,
-    "hauteur": 1.51
-  },
-  {
     "id": 43,
     "marque": "BMW",
     "modele": "Série 1",

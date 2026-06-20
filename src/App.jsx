@@ -12,7 +12,7 @@ const DEFAULT_FILTERS = {
   motorisations: [],
   segments: [],
   marques: [],
-  annee: [2021, 2024],
+  annees: [],
   prix: [15000, 65000],
   puissance: [60, 320],
   hauteur: [140, 170],
@@ -37,7 +37,9 @@ export default function App() {
         (c) => c.marque.toLowerCase().includes(q) || c.modele.toLowerCase().includes(q)
       )
     }
-    cars = cars.filter((c) => c.annee >= filters.annee[0] && c.annee <= filters.annee[1])
+    if (filters.annees.length) {
+      cars = cars.filter((c) => filters.annees.includes(String(c.annee)))
+    }
     if (filters.motorisations.length) {
       cars = cars.filter((c) => filters.motorisations.includes(c.motorisation))
     }

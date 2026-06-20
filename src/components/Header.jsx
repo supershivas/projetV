@@ -6,7 +6,7 @@ const OTHER_APPS = [
 
 export function Header({ selectionCount, onViewComparison }) {
   return (
-    <header className="bg-sidebar-bg border-b border-sidebar-border h-[52px] flex items-center px-4 gap-3 flex-shrink-0 z-40 sticky top-0">
+    <header className="lg:hidden bg-sidebar-bg border-b border-sidebar-border h-[52px] flex items-center px-4 gap-3 flex-shrink-0 z-40 sticky top-0">
       <div className="flex items-center gap-2 lg:hidden">
         <div className="w-6 h-6 rounded-md bg-accent flex items-center justify-center">
           <svg className="w-3.5 h-3.5" fill="white" viewBox="0 0 32 32">

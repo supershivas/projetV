@@ -122,7 +122,7 @@ export function FilterPanel({ filters, onChange, marques, onReset }) {
           />
           <MultiCheckbox
             label="Année"
-            options={['2021', '2022', '2023', '2024']}
+            options={['2021', '2022', '2023', '2024', '2025']}
             selected={filters.annees}
             onChange={(v) => onChange({ ...filters, annees: v })}
           />

@@ -114,7 +114,7 @@ export default function App() {
               { icon: '🗺️', label: 'Marché européen' },
               { icon: '⛽', label: 'Essence · Hybride · Électrique' },
               { icon: '📐', label: '6 segments' },
-              { icon: '📅', label: '2021 – 2024' },
+              { icon: '📅', label: '2021 – 2025' },
             ].map(({ icon, label }) => (
               <span key={label} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-gray-200 text-xs text-gray-600 shadow-sm">
                 <span>{icon}</span>

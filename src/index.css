@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600&family=DM+Mono&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    @apply bg-gray-50 text-gray-900 antialiased;
-    font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+    @apply bg-gray-100 text-gray-900 antialiased;
+    font-family: 'Inter', sans-serif;
   }
 }

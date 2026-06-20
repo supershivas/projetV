@@ -8,6 +8,7 @@ import { SortBar } from './components/SortBar'
 import { CarCard } from './components/CarCard'
 import { ComparisonTable } from './components/ComparisonTable'
 import { SavedSearches, buildTitle } from './components/SavedSearches'
+import { FilterTags } from './components/FilterTags'
 
 const DEFAULT_FILTERS = {
   annees: [],
@@ -16,7 +17,7 @@ const DEFAULT_FILTERS = {
   marques: [],
   prix: [15000, 65000],
   puissance: [60, 320],
-  hauteur: [140, 170],
+  hauteur: [140, 155],
   occasion: { actif: false, km: [0, 100000], prix: [5000, 60000] },
 }
 
@@ -253,6 +254,13 @@ export default function App() {
           </div>
 
           <div className="p-4 lg:p-6">
+            <FilterTags
+              filters={filters}
+              search={search}
+              onChange={setFilters}
+              onSearchChange={setSearch}
+            />
+
             {/* Sort + count */}
             <div className="flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center mb-5">
               <p className="text-sm text-gray-500">{filtered.length} voiture{filtered.length > 1 ? 's' : ''}</p>

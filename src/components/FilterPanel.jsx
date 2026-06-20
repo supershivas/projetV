@@ -67,7 +67,7 @@ function RangeSlider({ label, min, max, value, onChange, format, step = 1 }) {
 }
 
 export function FilterPanel({ filters, onChange, marques, onReset }) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
 
   const activeCount = [
     filters.motorisations.length,

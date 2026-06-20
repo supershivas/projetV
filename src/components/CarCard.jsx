@@ -91,6 +91,13 @@ export function CarCard({ car, selected, onToggle, selectionFull }) {
                 : `${car.consommation} L/100`}
             </span>
           </div>
+          <div className="flex justify-between col-span-2">
+            <span className="text-gray-400">Hauteur</span>
+            <span className={`font-medium ${car.hauteur > 1.55 ? 'text-amber-600' : 'text-gray-600'}`}>
+              {car.hauteur.toFixed(2)} m
+              {car.hauteur > 1.55 && <span className="ml-1 text-amber-400 text-xs" title="Dépasse 1.55 m">▲</span>}
+            </span>
+          </div>
         </div>
       </div>
     </div>

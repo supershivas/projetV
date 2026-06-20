@@ -100,9 +100,24 @@ export default function App() {
         {/* Hero */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-1">Comparez les voitures</h1>
-          <p className="text-gray-500 text-sm">
-            {carsData.length} modèles · Sélectionnez 2 à 4 voitures pour les comparer côte à côte
+          <p className="text-gray-500 text-sm mb-4">
+            Sélectionnez 2 à 4 voitures pour les comparer côte à côte
           </p>
+          <div className="flex flex-wrap gap-2">
+            {[
+              { icon: '🚗', label: `${carsData.length} modèles` },
+              { icon: '👥', label: '5 places' },
+              { icon: '🗺️', label: 'Marché européen' },
+              { icon: '⛽', label: 'Essence · Hybride · Électrique' },
+              { icon: '📐', label: '6 segments' },
+              { icon: '📅', label: 'Millésime 2024' },
+            ].map(({ icon, label }) => (
+              <span key={label} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-gray-200 text-xs text-gray-600 shadow-sm">
+                <span>{icon}</span>
+                {label}
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* Search */}

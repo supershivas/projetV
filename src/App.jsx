@@ -9,6 +9,7 @@ import { CarCard } from './components/CarCard'
 import { ComparisonTable } from './components/ComparisonTable'
 import { SavedSearches, buildTitle } from './components/SavedSearches'
 import { FilterTags } from './components/FilterTags'
+import { UpdateButton } from './components/UpdateButton'
 
 const DEFAULT_FILTERS = {
   annees: [],
@@ -153,7 +154,7 @@ export default function App() {
           </div>
 
           {/* Filters */}
-          <div className="flex-1 overflow-y-auto p-2">
+          <div className="flex-1 overflow-y-auto p-2 pb-0">
             <FilterPanel
               filters={filters}
               onChange={setFilters}
@@ -208,6 +209,11 @@ export default function App() {
                 )}
               </div>
             )}
+          </div>
+
+          {/* Update button pinned at bottom */}
+          <div className="p-2 border-t border-sidebar-border flex-shrink-0">
+            <UpdateButton />
           </div>
         </aside>
 

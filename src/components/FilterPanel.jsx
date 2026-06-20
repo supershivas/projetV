@@ -73,6 +73,7 @@ export function FilterPanel({ filters, onChange, marques, onReset }) {
     filters.marques.length,
     filters.prix[0] > 15000 || filters.prix[1] < 65000 ? 1 : 0,
     filters.puissance[0] > 60 || filters.puissance[1] < 320 ? 1 : 0,
+    filters.hauteur[0] > 140 || filters.hauteur[1] < 170 ? 1 : 0,
   ].reduce((a, b) => a + b, 0)
 
   return (
@@ -130,6 +131,14 @@ export function FilterPanel({ filters, onChange, marques, onReset }) {
             value={filters.puissance}
             onChange={(v) => onChange({ ...filters, puissance: v })}
             format={(v) => `${v} ch`}
+          />
+          <RangeSlider
+            label="Hauteur (m)"
+            min={140}
+            max={170}
+            value={filters.hauteur}
+            onChange={(v) => onChange({ ...filters, hauteur: v })}
+            format={(v) => `${(v / 100).toFixed(2)} m`}
           />
           {activeCount > 0 && (
             <button

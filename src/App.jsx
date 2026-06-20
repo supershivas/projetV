@@ -13,6 +13,7 @@ const DEFAULT_FILTERS = {
   marques: [],
   prix: [15000, 65000],
   puissance: [60, 320],
+  hauteur: [140, 170],
 }
 
 const marques = [...new Set(carsData.map((c) => c.marque))].sort()
@@ -47,6 +48,9 @@ export default function App() {
     )
     cars = cars.filter(
       (c) => c.puissance >= filters.puissance[0] && c.puissance <= filters.puissance[1]
+    )
+    cars = cars.filter(
+      (c) => c.hauteur * 100 >= filters.hauteur[0] && c.hauteur * 100 <= filters.hauteur[1]
     )
     return [...cars].sort((a, b) => {
       const v = sort.dir === 'asc' ? 1 : -1

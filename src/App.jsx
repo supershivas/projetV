@@ -10,6 +10,7 @@ import { ComparisonTable } from './components/ComparisonTable'
 import { SavedSearches, buildTitle } from './components/SavedSearches'
 import { FilterTags } from './components/FilterTags'
 import { UpdateButton } from './components/UpdateButton'
+import { SettingsModal } from './components/SettingsModal'
 
 const DEFAULT_FILTERS = {
   annees: [],
@@ -119,8 +120,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header selectionCount={selection.length} onViewComparison={handleViewComparison} />
-
       <div className="flex flex-1 min-h-0">
         {/* Sidebar sombre */}
         <aside className="hidden lg:flex flex-col w-64 flex-shrink-0 bg-sidebar-bg border-r border-sidebar-border min-h-screen">
@@ -134,6 +133,9 @@ export default function App() {
               </svg>
             </div>
             <span className="font-semibold text-sidebar-fg text-sm">AutoCompare</span>
+            <div className="ml-auto">
+              <SettingsModal selectionCount={selection.length} onViewComparison={handleViewComparison} />
+            </div>
           </div>
 
           {/* Search */}

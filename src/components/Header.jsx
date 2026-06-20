@@ -1,3 +1,9 @@
+const OTHER_APPS = [
+  { name: 'Idée', url: 'https://idee-neon.vercel.app/', favicon: 'https://idee-neon.vercel.app/favicon.ico' },
+  { name: 'Source', url: 'https://source-sigma-kohl.vercel.app/app', favicon: 'https://source-sigma-kohl.vercel.app/favicon.ico' },
+  { name: 'Portfolio', url: 'https://stockportfolio-five.vercel.app/', favicon: 'https://stockportfolio-five.vercel.app/favicon.ico' },
+]
+
 export function Header({ selectionCount, onViewComparison }) {
   return (
     <header className="bg-sidebar-bg border-b border-sidebar-border h-[52px] flex items-center px-4 gap-3 flex-shrink-0 z-40 sticky top-0">
@@ -15,6 +21,28 @@ export function Header({ selectionCount, onViewComparison }) {
       <div className="flex-1" />
 
       <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
+          {OTHER_APPS.map(app => (
+            <a
+              key={app.name}
+              href={app.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={app.name}
+              className="w-7 h-7 flex items-center justify-center rounded-md hover:bg-sidebar-hover transition-colors"
+            >
+              <img
+                src={app.favicon}
+                alt={app.name}
+                width={16}
+                height={16}
+                className="rounded-sm"
+                onError={e => { e.target.style.display = 'none' }}
+              />
+            </a>
+          ))}
+        </div>
+
         {selectionCount > 0 && (
           <button
             onClick={onViewComparison}

@@ -56,22 +56,6 @@ export function SettingsModal({ selectionCount, onViewComparison }) {
             </a>
           ))}
 
-          {selectionCount > 0 && (
-            <>
-              <div className="my-1.5 border-t border-sidebar-border" />
-              <div className="px-2">
-                <button
-                  onClick={() => { onViewComparison(); setOpen(false) }}
-                  className="w-full flex items-center gap-1.5 bg-accent hover:bg-accent-hover text-white px-3 py-1.5 rounded-md text-xs font-medium transition-colors"
-                >
-                  Comparer ({selectionCount})
-                  <svg className="w-3.5 h-3.5 ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </div>
-            </>
-          )}
         </div>
       )}
     </div>

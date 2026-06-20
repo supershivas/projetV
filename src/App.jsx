@@ -220,7 +220,20 @@ export default function App() {
         </aside>
 
         {/* Main content */}
-        <main className="flex-1 min-w-0 overflow-auto">
+        <main className="flex-1 min-w-0 overflow-auto relative">
+          {selection.length >= 2 && (
+            <div className="sticky top-4 z-30 flex justify-end pr-4 pointer-events-none">
+              <button
+                onClick={handleViewComparison}
+                className="pointer-events-auto flex items-center gap-1.5 bg-accent hover:bg-accent-hover text-white px-4 py-2 rounded-lg text-sm font-medium shadow-lg transition-colors"
+              >
+                Comparer ({selection.length})
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          )}
           {/* Hero */}
           <div className="border-b border-gray-200 bg-white px-6 py-5">
             <h1 className="font-title text-2xl font-semibold text-gray-900 mb-1">

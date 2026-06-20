@@ -1,3 +1,9 @@
+const OTHER_APPS = [
+  { name: 'Idée', url: 'https://idee-neon.vercel.app/', favicon: 'https://idee-neon.vercel.app/favicon.ico' },
+  { name: 'Source', url: 'https://source-sigma-kohl.vercel.app/app', favicon: 'https://source-sigma-kohl.vercel.app/favicon.ico' },
+  { name: 'Portfolio', url: 'https://stockportfolio-five.vercel.app/', favicon: 'https://stockportfolio-five.vercel.app/favicon.ico' },
+]
+
 export function Header({ selectionCount, onViewComparison }) {
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
@@ -12,17 +18,40 @@ export function Header({ selectionCount, onViewComparison }) {
             </div>
             <span className="font-semibold text-gray-900 text-lg">AutoCompare</span>
           </div>
-          {selectionCount > 0 && (
-            <button
-              onClick={onViewComparison}
-              className="flex items-center gap-2 bg-accent-600 hover:bg-accent-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-            >
-              <span>Comparer ({selectionCount})</span>
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          )}
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1">
+              {OTHER_APPS.map(app => (
+                <a
+                  key={app.name}
+                  href={app.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={app.name}
+                  className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
+                >
+                  <img
+                    src={app.favicon}
+                    alt={app.name}
+                    width={18}
+                    height={18}
+                    className="rounded-sm"
+                    onError={e => { e.target.style.display = 'none' }}
+                  />
+                </a>
+              ))}
+            </div>
+            {selectionCount > 0 && (
+              <button
+                onClick={onViewComparison}
+                className="flex items-center gap-2 bg-accent-600 hover:bg-accent-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+              >
+                <span>Comparer ({selectionCount})</span>
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </header>
